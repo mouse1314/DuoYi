@@ -28,4 +28,6 @@ public interface UserGeneratorMapper {
     int updateByPrimaryKeySelective(UserGenerator record);
 
     int updateByPrimaryKey(UserGenerator record);
+    
+    String selectPassByUsername(@Param("username")String username);
 }

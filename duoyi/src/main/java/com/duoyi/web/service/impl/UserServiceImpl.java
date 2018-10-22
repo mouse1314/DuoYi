@@ -9,6 +9,7 @@ import com.duoyi.model.po.UserGenerator;
 import com.duoyi.util.DateTimeUtils;
 import com.duoyi.util.MD5Util;
 import com.duoyi.web.service.UserSerivice;
+import com.duoyi.model.vo.UserVo;
 
 
 /**
@@ -45,5 +46,27 @@ public class UserServiceImpl implements UserSerivice {
 		
 		return true;
 	}
+
+	@Override
+	public int selectPassByUsername(UserVo user) {
+		String RealPassword = userMapper.selectPassByUsername(user.getUsername());
+		String MD5Pass = null;
+		try {
+			MD5Pass = MD5Util.getMD5(user.getPassword(), user.getUsername());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if(RealPassword==null){
+			System.out.println("不存在该账号");
+			return 0;
+		}else if(!RealPassword.equals(MD5Pass)){
+			System.out.println("密码错误");
+			return -1;
+		}
+		return 1;
+		
+	}
+
+	
 
 }

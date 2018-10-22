@@ -272,7 +272,7 @@
       register_time = #{registerTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectPassByUsername">
+  <select id="selectPassByUsername" parameterType="java.lang.String" resultType="java.lang.String">
   	select password from user where username = #{username};
   </select>
 </mapper>
