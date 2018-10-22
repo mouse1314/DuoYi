@@ -30,7 +30,7 @@ public class MD5Util {
         }
     }
 	
-	/**更高级的加密
+	/**把账号一起放进去加密
 	 * @param password 明文
      * @param key 密钥
      * @return 密文
