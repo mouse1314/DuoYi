@@ -4,6 +4,7 @@ import com.duoyi.model.po.UserGenerator;
 import com.duoyi.model.po.UserGeneratorCriteria;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
 public interface UserGeneratorMapper {
     long countByExample(UserGeneratorCriteria example);
