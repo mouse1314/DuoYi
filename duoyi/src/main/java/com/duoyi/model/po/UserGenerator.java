@@ -22,6 +22,10 @@ public class UserGenerator implements Serializable {
 
     private Date registerTime;
 
+    private String mail;
+
+    private String phone;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -94,5 +98,21 @@ public class UserGenerator implements Serializable {
 
     public void setRegisterTime(Date registerTime) {
         this.registerTime = registerTime;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail == null ? null : mail.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 }

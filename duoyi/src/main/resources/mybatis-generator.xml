@@ -54,7 +54,7 @@
 		</javaClientGenerator> 
 
 		<!-- 这里是数据库的表名 以及 PO类的名字(即：手动指定生成的模型类类名) -->
-		<table tableName="resource" domainObjectName="ResourceGenerator"
+		<table tableName="user" domainObjectName="UserGenerator"
             enableSelectByPrimaryKey="true" enableSelectByExample="true"
             enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true"
             enableDeleteByExample="true" enableCountByExample="true"
