@@ -17,7 +17,9 @@ public interface CardGeneratorMapper {
     int insertSelective(CardGenerator record);
 
     List<CardGenerator> selectByExample(CardGeneratorCriteria example);
-
+    
+    List<CardGenerator> selectByUserId(Integer id);//查询用户发的贴子
+    
     CardGenerator selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") CardGenerator record, @Param("example") CardGeneratorCriteria example);
@@ -27,4 +29,6 @@ public interface CardGeneratorMapper {
     int updateByPrimaryKeySelective(CardGenerator record);
 
     int updateByPrimaryKey(CardGenerator record);
+    
+    int updateByCardId(CardGenerator record);
 }

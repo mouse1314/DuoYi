@@ -10,7 +10,10 @@ import com.duoyi.model.vo.UserVo;
  */
 public interface UserService {
 
-	public boolean saveUser(UserGenerator user);
+	public String saveUser(UserGenerator user);
 	
 	public int selectPassByUsername(UserVo user);
+	
+	public int getUserId(String username);
+
 }

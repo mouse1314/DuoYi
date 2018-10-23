@@ -26,15 +26,13 @@ public class RegisterController {
 	public @ResponseBody JSONObject register(@RequestBody UserGenerator user){
 		
 		JSONObject json = new JSONObject();
-		boolean result = userSerivice.saveUser(user);
+		String result = userSerivice.saveUser(user);
 		
-		if(result){
 			json.put("status", 1);
-			json.put("message", "注册成功");
-		}else{
-			json.put("status", -1);
-			json.put("message", "注册失败");
-		}
+			json.put("message", result);
+		
+			
+		
 		
 		return json;
 		

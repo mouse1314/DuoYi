@@ -31,15 +31,15 @@
 	<!-- 对静态资源的访问 -->
 	<mvc:resources location="/resources/" mapping="/resources/**" />
 
-	<!-- 定义登陆拦截器 -->
+
+<!-- 登陆拦截器 -->
 	<mvc:interceptors>
-		<mvc:interceptor>
-			<!-- 拦截所有URL的请求 -->
-			<mvc:mapping path="/**" />
-			<bean
-				class="com.duoyi.web.Interceptor.LoginInterceptor"></bean>
-		</mvc:interceptor>
-	</mvc:interceptors>
+         <mvc:interceptor>
+             <!-- 拦截所有URL所有的请求 -->
+             <mvc:mapping path="/**"/>
+             <bean class="com.duoyi.web.Interceptor.LoginInterceptor"></bean>
+         </mvc:interceptor>
+     </mvc:interceptors>
 
 
 	<!-- 定义视图处理器 -->

@@ -30,4 +30,6 @@ public interface UserGeneratorMapper {
     int updateByPrimaryKey(UserGenerator record);
     
     String selectPassByUsername(@Param("username")String username);
+    
+    int getUserId(@Param("username")String username);
 }

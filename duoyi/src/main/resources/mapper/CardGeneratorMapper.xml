@@ -208,4 +208,16 @@
       title = #{title,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <update id="updateByCardId" parameterType="com.duoyi.model.po.CardGenerator">
+    update card
+    set 
+      content = #{content,jdbcType=VARCHAR}
+    where id = #{id}
+  </update>
+  
+  <!-- 查询用户的帖子 -->
+  <select id="selectByUserId" parameterType="int" resultMap="BaseResultMap">
+  	select * from card where user_id=#{id}
+  </select>
 </mapper>

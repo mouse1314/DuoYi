@@ -35,8 +35,8 @@ public class LoginInterceptor implements HandlerInterceptor{
 			return true;
 		}
 		
-		UserGenerator user = (UserGenerator) request.getSession().getAttribute("user");
-		if(user==null || user.getId() == 0){
+		int userid =  (int) request.getSession().getAttribute("userid");
+		if(userid <= 0){
 			//未登录是跳转到登陆界面
 			//response.sendRedirect("/login.html");
 			return false;

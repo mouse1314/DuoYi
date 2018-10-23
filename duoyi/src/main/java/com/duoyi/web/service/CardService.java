@@ -1,5 +1,8 @@
 package com.duoyi.web.service;
 
+
+import java.util.List;
+
 import com.duoyi.model.po.CardGenerator;
 
 /**
@@ -9,4 +12,11 @@ import com.duoyi.model.po.CardGenerator;
 public interface CardService {
 
 	public String insertCard(CardGenerator card);
+	public String updateCardByCardId(CardGenerator card);
+	
+	public List<CardGenerator> findUserCard(int id);
+	
+	public List<CardGenerator> findAllCards();
+	
+	public String delectCard(int id);
 }

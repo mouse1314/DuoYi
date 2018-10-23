@@ -27,4 +27,8 @@ public interface GoodsGeneratorMapper {
     int updateByPrimaryKeySelective(GoodsGenerator record);
 
     int updateByPrimaryKey(GoodsGenerator record);
+    
+    List<GoodsGenerator> getAll();
+    
+    List<GoodsGenerator> getAllByUserid(int userid);
 }
