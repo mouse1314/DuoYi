@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.duoyi.model.po.UserGenerator;
-import com.duoyi.web.service.UserSerivice;
+import com.duoyi.web.service.UserService;
 
 import net.sf.json.JSONObject;
 
@@ -23,7 +23,7 @@ import net.sf.json.JSONObject;
 public class RegisterController {
 
 	@Autowired
-	private UserSerivice userSerivice;
+	private UserService userSerivice;
 	
 	@RequestMapping(value="/register",method=RequestMethod.POST)
 	public @ResponseBody JSONObject register(@RequestBody UserGenerator user){

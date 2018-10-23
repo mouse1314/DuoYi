@@ -8,7 +8,7 @@ import com.duoyi.dao.UserGeneratorMapper;
 import com.duoyi.model.po.UserGenerator;
 import com.duoyi.util.DateTimeUtils;
 import com.duoyi.util.MD5Util;
-import com.duoyi.web.service.UserSerivice;
+import com.duoyi.web.service.UserService;
 import com.duoyi.model.vo.UserVo;
 
 
@@ -17,7 +17,7 @@ import com.duoyi.model.vo.UserVo;
  *2018年10月22日
  */
 @Service
-public class UserServiceImpl implements UserSerivice {
+public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	private UserGeneratorMapper userMapper;

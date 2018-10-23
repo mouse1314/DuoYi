@@ -8,7 +8,7 @@ import com.duoyi.model.vo.UserVo;
  * @author 浩子
  *
  */
-public interface UserSerivice {
+public interface UserService {
 
 	public boolean saveUser(UserGenerator user);
 	
