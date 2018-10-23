@@ -13,4 +13,7 @@ public interface UserService {
 	public boolean saveUser(UserGenerator user);
 	
 	public int selectPassByUsername(UserVo user);
+	
+	public int getUserId(String username);
+
 }

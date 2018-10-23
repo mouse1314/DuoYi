@@ -273,6 +273,9 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectPassByUsername" parameterType="java.lang.String" resultType="java.lang.String">
-  	select password from user where username = #{username};
+  	select password from user where username = #{username}
+  </select>
+  <select id="getUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
+  	select id from user where username = #{username}
   </select>
 </mapper>

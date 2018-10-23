@@ -1,5 +1,8 @@
 package com.duoyi.web.controller;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +23,8 @@ public class LoginController {
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
     @ResponseBody
-    public JSONObject login(@RequestBody UserVo user){
+    public JSONObject login(@RequestBody UserVo user,HttpServletRequest request){
+		
 		JSONObject json = new JSONObject();
 		int result = userSerivice.selectPassByUsername(user);
 		if(result==0){
@@ -30,6 +34,8 @@ public class LoginController {
 			json.put("state",-1);
 			json.put("message", "密码错误");
 		}else if(result==1){
+			HttpSession session = request.getSession();
+			session.setAttribute("username",userSerivice.getUserId(user.getUsername()));
 			json.put("state",1);
 			json.put("message", "正确");
 		}

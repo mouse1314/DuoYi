@@ -240,4 +240,10 @@
       time = #{time,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getAll" resultType="java.util.List">
+  	select * from goods
+  </select>
+  <select id="getAllByUserid" resultType="java.util.List">
+  	select * from goods where user_id = #{userid}
+  </select>
 </mapper>

@@ -18,7 +18,6 @@ import com.duoyi.model.vo.UserVo;
  */
 @Service
 public class UserServiceImpl implements UserService {
-	
 	@Autowired
 	private UserGeneratorMapper userMapper;
 	
@@ -66,6 +65,13 @@ public class UserServiceImpl implements UserService {
 		return 1;
 		
 	}
+
+	@Override
+	public int getUserId(String username) {
+		// TODO Auto-generated method stub
+		return userMapper.getUserId(username);
+	}
+
 
 	
 
