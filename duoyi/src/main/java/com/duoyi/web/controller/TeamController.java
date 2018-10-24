@@ -101,4 +101,44 @@ public class TeamController {
 		}
 		return json;
 	}
+	
+	
+	@PostMapping("/findAllTeams")
+	@ResponseBody //查看我发布的所有组队申请
+	public JSONObject findAllTeam(){
+		JSONObject json = new JSONObject();
+		
+		
+		List<TeamGenerator> list= teamService.findAllTeam();
+		
+		
+		if(list.size()>0){
+			json.put("status", 1);
+			json.put("result", list);
+		}else{
+			json.put("status", -1);
+			json.put("message", "你还没有发布过任何组队消息");
+		}
+		return json;
+	}
+	
+	@PostMapping("/findAllSkills")
+	@ResponseBody //查看我发布的所有寻求组队申请
+	public JSONObject findAllSkill(){
+		JSONObject json = new JSONObject();
+		
+		List<SkillGenerator> list = teamService.findAllSkill();
+		if(list.size()>0){
+			json.put("status", 1);
+			json.put("result", list);
+		}else{
+			json.put("status", -1);
+			json.put("message", "你还没有发布过任何寻求组队消息");
+		}
+		return json;
+	}
+	
+	
+	
+	
 }

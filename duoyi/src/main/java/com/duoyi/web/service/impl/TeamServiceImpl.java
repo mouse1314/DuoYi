@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import com.duoyi.dao.SkillGeneratorMapper;
 import com.duoyi.dao.TeamGeneratorMapper;
 import com.duoyi.model.po.SkillGenerator;
+import com.duoyi.model.po.SkillGeneratorCriteria;
 import com.duoyi.model.po.TeamGenerator;
+import com.duoyi.model.po.TeamGeneratorCriteria;
 import com.duoyi.util.StringUtils;
 import com.duoyi.web.service.TeamService;
 
@@ -83,6 +85,28 @@ public class TeamServiceImpl implements TeamService {
 		List<SkillGenerator> list = new ArrayList<SkillGenerator>();
 		try{
 			list = skillMapper.selectByUserId(id);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<TeamGenerator> findAllTeam() {
+		List<TeamGenerator> list=new ArrayList<TeamGenerator>();
+		try{
+			list = teamMapper.selectByExample(new TeamGeneratorCriteria());
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	@Override
+	public List<SkillGenerator> findAllSkill() {
+		List<SkillGenerator> list = new ArrayList<SkillGenerator>();
+		try{
+			list = skillMapper.selectByExample(new SkillGeneratorCriteria());
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

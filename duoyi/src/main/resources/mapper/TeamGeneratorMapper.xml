@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, name, describe, need_skill, result
+    id, user_id, `name`, `describe`, need_skill, result
   </sql>
   <select id="selectByExample" parameterType="com.duoyi.model.po.TeamGeneratorCriteria" resultMap="BaseResultMap">
     select

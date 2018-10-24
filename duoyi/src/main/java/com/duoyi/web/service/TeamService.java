@@ -18,4 +18,9 @@ public interface TeamService {
 	public List<TeamGenerator> findAllTeam(int id);
 	
 	public List<SkillGenerator> findAllSkill(int id);
+	
+	public List<TeamGenerator> findAllTeam();
+	
+	public List<SkillGenerator> findAllSkill();
+	
 }
