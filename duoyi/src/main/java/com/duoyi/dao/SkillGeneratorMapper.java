@@ -17,6 +17,8 @@ public interface SkillGeneratorMapper {
     int insertSelective(SkillGenerator record);
 
     List<SkillGenerator> selectByExample(SkillGeneratorCriteria example);
+    
+    List<SkillGenerator> selectByUserId(Integer id);
 
     SkillGenerator selectByPrimaryKey(Integer id);
 

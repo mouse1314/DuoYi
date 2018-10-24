@@ -28,6 +28,15 @@ public class StringUtils {
 		result = a[a.length - 1];
 		return result;
 	}
+	
+	//字符串判别空认定
+	public static boolean isEmpty(String s){
+		if(s == null || "".equals(s)){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	public static void main(String[] args) {
 //		System.out.println(getRandomString(30));
 		System.out.println(splitByPot("1.txt"));

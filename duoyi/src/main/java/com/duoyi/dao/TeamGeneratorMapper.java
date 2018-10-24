@@ -18,6 +18,8 @@ public interface TeamGeneratorMapper {
 
     List<TeamGenerator> selectByExample(TeamGeneratorCriteria example);
 
+    List<TeamGenerator> selectByUserId(Integer id);
+    
     TeamGenerator selectByPrimaryKey(Integer id);
 
     int updateByExampleSelective(@Param("record") TeamGenerator record, @Param("example") TeamGeneratorCriteria example);

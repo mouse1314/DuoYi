@@ -99,8 +99,8 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.duoyi.model.po.SkillGenerator">
-    insert into skill (id, user_id, name, 
-      describe)
+    insert into skill (id, user_id, `name`, 
+      `describe`)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{describe,jdbcType=VARCHAR})
   </insert>
@@ -193,4 +193,9 @@
       describe = #{describe,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 查看个人寻求组队的情况 -->
+  <select id="selectByUserId" parameterType="int" resultMap="BaseResultMap">
+  	select * from skill where user_id = #{id}
+  </select>
 </mapper>
