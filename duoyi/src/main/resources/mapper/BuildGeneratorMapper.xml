@@ -208,4 +208,9 @@
       time = #{time,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  
+  <!-- 根据帖子id去查看有关这个帖子的盖楼 -->
+  <select id="selectByCardId" parameterType="int" resultMap="BaseResultMap">
+  select * from build where card_id = #{id}
+  </select>
 </mapper>

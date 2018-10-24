@@ -17,6 +17,8 @@ public interface BuildGeneratorMapper {
     int insertSelective(BuildGenerator record);
 
     List<BuildGenerator> selectByExample(BuildGeneratorCriteria example);
+    
+    List<BuildGenerator> selectByCardId(Integer id);//根据帖子id去查看帖子的盖楼
 
     BuildGenerator selectByPrimaryKey(Integer id);
 
