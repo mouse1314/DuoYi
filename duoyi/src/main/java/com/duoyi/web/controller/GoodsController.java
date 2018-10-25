@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.duoyi.model.po.GoodsGenerator;
 import com.duoyi.web.service.GoodsService;
 
-import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @Controller
