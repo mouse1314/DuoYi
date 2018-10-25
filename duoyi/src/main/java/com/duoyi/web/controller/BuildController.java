@@ -58,6 +58,7 @@ public class BuildController {
 		
 		if(list.size()>0){
 			json.put("status", 1);
+			json.put("message", "success");
 			json.put("result", list);
 		}else{
 			json.put("status", 0);

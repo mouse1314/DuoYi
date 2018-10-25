@@ -77,6 +77,7 @@ public class TeamController {
 		
 		if(list.size()>0){
 			json.put("status", 1);
+			json.put("message", "success");
 			json.put("result", list);
 		}else{
 			json.put("status", -1);
@@ -94,6 +95,7 @@ public class TeamController {
 		List<SkillGenerator> list = teamService.findAllSkill(userid);
 		if(list.size()>0){
 			json.put("status", 1);
+			json.put("message", "success");
 			json.put("result", list);
 		}else{
 			json.put("status", -1);
@@ -104,7 +106,7 @@ public class TeamController {
 	
 	
 	@PostMapping("/findAllTeams")
-	@ResponseBody //查看我发布的所有组队申请
+	@ResponseBody //查看所有所有组队申请
 	public JSONObject findAllTeam(){
 		JSONObject json = new JSONObject();
 		
@@ -114,6 +116,7 @@ public class TeamController {
 		
 		if(list.size()>0){
 			json.put("status", 1);
+			json.put("message", "success");
 			json.put("result", list);
 		}else{
 			json.put("status", -1);
@@ -123,13 +126,14 @@ public class TeamController {
 	}
 	
 	@PostMapping("/findAllSkills")
-	@ResponseBody //查看我发布的所有寻求组队申请
+	@ResponseBody //查看所有寻求组队申请
 	public JSONObject findAllSkill(){
 		JSONObject json = new JSONObject();
 		
 		List<SkillGenerator> list = teamService.findAllSkill();
 		if(list.size()>0){
 			json.put("status", 1);
+			json.put("message", "success");
 			json.put("result", list);
 		}else{
 			json.put("status", -1);
