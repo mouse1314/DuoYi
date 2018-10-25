@@ -24,6 +24,8 @@ public interface TeamGeneratorMapper {
 
     int updateByExampleSelective(@Param("record") TeamGenerator record, @Param("example") TeamGeneratorCriteria example);
 
+    int updateTeamResult(Integer id);//队伍完成组队，修改result为1
+    
     int updateByExample(@Param("record") TeamGenerator record, @Param("example") TeamGeneratorCriteria example);
 
     int updateByPrimaryKeySelective(TeamGenerator record);

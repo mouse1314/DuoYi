@@ -218,14 +218,17 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.duoyi.model.po.TeamGenerator">
     update team
-    set user_id = #{userId,jdbcType=INTEGER},
-      name = #{name,jdbcType=VARCHAR},
-      describe = #{describe,jdbcType=VARCHAR},
+    set `name` = #{name,jdbcType=VARCHAR},
+      `describe` = #{describe,jdbcType=VARCHAR},
       need_skill = #{needSkill,jdbcType=VARCHAR},
       result = #{result,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   
+  <!--  -->
+  <update id="updateTeamResult" parameterType="int">
+  	update team set result = 1 where id = #{id}
+  </update>
   
   <select id="selectByUserId" parameterType="int" resultMap="BaseResultMap">
   	select * from team where user_id = #{id}

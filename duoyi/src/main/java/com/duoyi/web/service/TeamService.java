@@ -23,4 +23,10 @@ public interface TeamService {
 	
 	public List<SkillGenerator> findAllSkill();
 	
+	public int completeTeam(int id);
+	
+	public int updateTeam(TeamGenerator team);
+	
+	public TeamGenerator selectTeamById(int id);
+	
 }
