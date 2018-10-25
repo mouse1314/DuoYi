@@ -21,7 +21,7 @@ public class GoodsServiceImpl implements GoodsService{
 	public List<GoodsGenerator> getAll() {
 		// TODO Auto-generated method stub
 //		GoodsGeneratorCriteria record = new GoodsGeneratorCriteria();
-		return goodsMapper.getAll();
+		return goodsMapper.selectByExample(new GoodsGeneratorCriteria());
 	}
 
 

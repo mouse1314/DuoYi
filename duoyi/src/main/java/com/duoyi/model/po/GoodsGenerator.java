@@ -3,6 +3,8 @@ package com.duoyi.model.po;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class GoodsGenerator implements Serializable {
     private Integer id;
 
@@ -75,4 +77,12 @@ public class GoodsGenerator implements Serializable {
     public void setTime(Date time) {
         this.time = time;
     }
+
+	@Override
+	public String toString() {
+		return "GoodsGenerator [id=" + id + ", userId=" + userId + ", name=" + name + ", price=" + price + ", describe="
+				+ describe + ", result=" + result + ", time=" + time + "]";
+	}
+    
+    
 }

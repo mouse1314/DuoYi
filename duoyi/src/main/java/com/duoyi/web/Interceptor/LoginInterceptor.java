@@ -35,12 +35,12 @@ public class LoginInterceptor implements HandlerInterceptor{
 			return true;
 		}
 		
-		int userid =  (int) request.getSession().getAttribute("userid");
-		if(userid <= 0){
-			//未登录是跳转到登陆界面
-			//response.sendRedirect("/login.html");
-			return false;
-		}
+//		int userid =  (int) request.getSession().getAttribute("userid");
+//		if(userid <= 0){
+//			//未登录是跳转到登陆界面
+//			//response.sendRedirect("/login.html");
+//			return false;
+//		}
 		
 		return true;
 	}
