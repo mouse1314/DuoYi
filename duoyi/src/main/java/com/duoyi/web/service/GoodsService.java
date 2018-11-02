@@ -16,4 +16,6 @@ public interface GoodsService {
 	
 	public int update(GoodsGenerator goodsGenerator);
 	
+	public List<GoodsGenerator> searchGoods(String msg);
+	
 }

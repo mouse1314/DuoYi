@@ -48,4 +48,12 @@ public class GoodsServiceImpl implements GoodsService{
 		// TODO Auto-generated method stub
 		return goodsMapper.updateByPrimaryKeySelective(goodsGenerator);
 	}
+
+
+	@Override //模糊搜索
+	public List<GoodsGenerator> searchGoods(String msg) {
+		
+		List<GoodsGenerator> list = goodsMapper.searchGoods(msg);
+		return list;
+	}
 }

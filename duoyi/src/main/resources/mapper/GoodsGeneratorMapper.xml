@@ -246,4 +246,13 @@
   <select id="getAllByUserid" resultMap="BaseResultMap">
   	select * from goods where user_id = #{userid}
   </select>
+  
+  <select id="searchGoods" resultMap="BaseResultMap" parameterType="String">
+  	select * from goods 
+  	<where>
+  	 <if test="name != null and name != ''">
+                name LIKE '%${name}%'
+            </if>
+  	</where>
+  </select>
 </mapper>
