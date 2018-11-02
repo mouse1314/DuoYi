@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_id, name, price, describe, result, time
+    id, user_id, `name`, price, `describe`, result, time
   </sql>
   <select id="selectByExample" parameterType="com.duoyi.model.po.GoodsGeneratorCriteria" resultMap="BaseResultMap">
     select
@@ -102,8 +102,8 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.duoyi.model.po.GoodsGenerator">
-    insert into goods (id, user_id, name, 
-      price, describe, result, 
+    insert into goods (id, user_id, `name`, 
+      price, `describe`, result, 
       time)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{price,jdbcType=REAL}, #{describe,jdbcType=VARCHAR}, #{result,jdbcType=INTEGER}, 
@@ -213,13 +213,13 @@
         user_id = #{userId,jdbcType=INTEGER},
       </if>
       <if test="name != null">
-        name = #{name,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
       <if test="price != null">
         price = #{price,jdbcType=REAL},
       </if>
       <if test="describe != null">
-        describe = #{describe,jdbcType=VARCHAR},
+        `describe` = #{describe,jdbcType=VARCHAR},
       </if>
       <if test="result != null">
         result = #{result,jdbcType=INTEGER},
@@ -240,10 +240,10 @@
       time = #{time,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="getAll" resultType="java.util.List">
+  <select id="getAll" resultMap="BaseResultMap">
   	select * from goods
   </select>
-  <select id="getAllByUserid" resultType="java.util.List">
+  <select id="getAllByUserid" resultMap="BaseResultMap">
   	select * from goods where user_id = #{userid}
   </select>
 </mapper>

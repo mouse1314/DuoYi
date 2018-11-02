@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.duoyi.dao.UserGeneratorMapper;
+import com.duoyi.model.po.GoodsGenerator;
 import com.duoyi.model.po.UserGenerator;
 import com.duoyi.util.DateTimeUtils;
 import com.duoyi.util.MD5Util;
@@ -80,8 +81,19 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public int getUserId(String username) {
-		// TODO Auto-generated method stub
 		return userMapper.getUserId(username);
+	}
+
+	@Override
+	public int updateUser(UserGenerator user) {
+		try {
+			user.setPassword(md5.getMD5(user.getPassword(), user.getUsername()));
+			return userMapper.updateByPrimaryKeySelective(user);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			return -1;
+		}
+		
 	}
 
 

@@ -4,6 +4,8 @@ import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -55,14 +57,16 @@ public class COSUtil {
 	 *  filename:具体名称
 	 *  file：本地地址
 	 */
-	public static void Upload(COSClient CosClient, String file) {
+	@SuppressWarnings({ "finally", "rawtypes" })
+	public static Map Upload(COSClient CosClient,File localFile) {
+		Map resultMap = new HashMap();
 		ExecutorService threadPool = Executors.newFixedThreadPool(32);
 		// 传入一个 threadpool, 若不传入线程池, 默认 TransferManager 中会生成一个单线程的线程池。
 		TransferManager transferManager = new TransferManager(CosClient, threadPool);
 
 		try {
 			
-			File localFile = new File(file);
+//			File localFile = new File(file);
 			String key = StringUtils.getRandomString(30)+"."+ StringUtils.splitByPot(localFile.getName());
 			PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key, localFile);
 			// 本地文件上传
@@ -72,19 +76,22 @@ public class COSUtil {
 			String url = urlhead + key +"."+ StringUtils.splitByPot(localFile.getName());
 //			String url = CosClient.generatePresignedUrl(bucketName + "-" + appId, key,
 //					new Date(new Date().getTime() + 5 * 60 * 10000)).toString();
+			resultMap.put("status", 1);
+			resultMap.put("url",url);
 			System.out.println(url);
 		} catch (CosServiceException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			resultMap.put("status", -1);
 		} catch (CosClientException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			resultMap.put("status", -1);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			resultMap.put("status", -1);
 		} finally {
 			transferManager.shutdownNow();
 			CosClient.shutdown();
+			return resultMap;
 		}
 	}
 
@@ -124,6 +131,6 @@ public class COSUtil {
 	
 	public static void main(String[] args) {
 		COSClient CosClient = getCOSClient();
-		Upload(CosClient, "C:\\Users\\jydf\\Desktop\\1.txt");
+//		Upload(CosClient, "C:\\Users\\jydf\\Desktop\\1.txt");
 	}
 }
