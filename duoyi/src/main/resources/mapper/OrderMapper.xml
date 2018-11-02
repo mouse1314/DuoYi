@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.duoyi.dao.OrderMapper">
+
+	<resultMap id="PreResultMap" type="com.duoyi.model.po.GoodsGenerator">
+		<id column="g_id" jdbcType="INTEGER" property="id" />
+		<result column="g_user_id" jdbcType="INTEGER" property="userId" />
+		<result column="g_name" jdbcType="VARCHAR" property="name" />
+		<result column="g_price" jdbcType="REAL" property="price" />
+		<result column="g_describe" jdbcType="VARCHAR" property="describe" />
+		<result column="g_result" jdbcType="INTEGER" property="result" />
+		<result column="g_time" jdbcType="TIMESTAMP" property="time" />
+	</resultMap>
+
+
+	<resultMap id="BaseResultMap" type="com.duoyi.model.vo.OrderVo">
+		<id column="id" property="id" />
+		<result column="user_id" property="userid" />
+		<result column="good_id" property="goodid" />
+		<result column="way" property="way" />
+		<result column="address" property="address" />
+		<result column="time" property="time" />
+		<association property="good" javaType="com.duoyi.model.po.GoodsGenerator">
+			<id column="g_id" jdbcType="INTEGER" property="id" />
+			<result column="g_user_id" jdbcType="INTEGER" property="userId" />
+			<result column="g_name" jdbcType="VARCHAR" property="name" />
+			<result column="g_price" jdbcType="REAL" property="price" />
+			<result column="g_describe" jdbcType="VARCHAR" property="describe" />
+			<result column="g_result" jdbcType="INTEGER" property="result" />
+			<result column="g_time" jdbcType="TIMESTAMP" property="time" />
+		</association>
+	</resultMap>
+
+	<insert id="insertOrder" parameterType="com.duoyi.model.po.Order">
+		insert into
+		`order`(user_id,good_id,way,address,time)
+		values(#{userid},#{goodid},#{way},#{address},#{time})
+	</insert>
+
+	<delete id="delectOrder" parameterType="int">
+		delete from `order` where
+		id = #{id}
+	</delete>
+
+	<select id="selectOrders" parameterType="int" resultMap="BaseResultMap">
+		select
+		o.id,o.user_id,o.good_id,o.way,o.address,o.time,g.id as g_id,g.user_id
+		as g_user_id,
+		g.name as g_name,g.price as g_price,g.describe as
+		g_describe,g.result as g_result,g.time as g_time from `order` o,`goods` g where o.user_id = #{id}
+
+	</select>
+</mapper>
