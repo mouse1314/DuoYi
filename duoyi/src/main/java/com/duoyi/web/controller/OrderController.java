@@ -72,7 +72,7 @@ public class OrderController {
 		
 		int userid = (int) request.getSession().getAttribute("userid");
 		List<OrderVo> list = orderService.selectOrders(userid);
-		//List<OrderVo> list = orderService.selectOrders(1);
+		//List<OrderVo> list = orderService.selectOrders(2);
 		JSONObject json = new JSONObject();
 		
 		if(list == null){
