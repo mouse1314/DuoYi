@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.duoyi.model.po.SkillGenerator;
 import com.duoyi.model.po.TeamGenerator;
 import com.duoyi.web.service.TeamService;
+import com.sun.tools.internal.xjc.generator.bean.ImplStructureStrategy.Result;
 
 import net.sf.json.JSONObject;
 
@@ -142,7 +143,40 @@ public class TeamController {
 		return json;
 	}
 	
+	@PostMapping("/compelectTeam")
+	@ResponseBody  //队伍完成组队申请
+	public JSONObject completeTeam(@RequestBody TeamGenerator team){
+		JSONObject json = new JSONObject();
+		
+		int result = teamService.completeTeam(team.getId());
+		json.put("status", result);
+		
+		if(result == 1){
+			json.put("message", "组队确认完成");
+		}else{
+			json.put("message", "请求失败，请重试");
+		}
+		return json;
+	}
 	
+	@PostMapping("/updateTeam")
+	@ResponseBody  //队伍更新组队申请
+	public JSONObject updateTeam(@RequestBody TeamGenerator team){
+		JSONObject json = new JSONObject();
+		int result = teamService.updateTeam(team);
+		
+		TeamGenerator team1 = teamService.selectTeamById(team.getId());
+		json.put("status", result);
+		
+		if(result == 1){
+			json.put("message", "组队信息更新完成完成");
+			json.put("result", team1);
+			
+		}else{
+			json.put("message", "请求失败，请重试");
+		}
+		return json;
+	}
 	
 	
 }

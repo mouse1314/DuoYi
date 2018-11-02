@@ -113,4 +113,22 @@ public class TeamServiceImpl implements TeamService {
 		return list;
 	}
 
+	@Override
+	public int completeTeam(int id) {
+		
+		return teamMapper.updateTeamResult(id);
+	}
+
+	@Override
+	public int updateTeam(TeamGenerator team) {
+		
+		return teamMapper.updateByPrimaryKey(team);
+	}
+
+	@Override
+	public TeamGenerator selectTeamById(int id) {
+		
+		return teamMapper.selectByPrimaryKey(id);
+	}
+
 }
