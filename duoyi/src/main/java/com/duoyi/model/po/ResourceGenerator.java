@@ -75,4 +75,21 @@ public class ResourceGenerator implements Serializable {
     public void setNumber(Integer number) {
         this.number = number;
     }
+
+	public ResourceGenerator() {
+		super();
+	}
+
+	public ResourceGenerator(Integer userId, String url, String describe, Date time, Integer price,
+			Integer number) {
+		super();
+		this.userId = userId;
+		this.url = url;
+		this.describe = describe;
+		this.time = time;
+		this.price = price;
+		this.number = number;
+	}
+    
+    
 }
