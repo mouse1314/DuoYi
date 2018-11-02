@@ -83,6 +83,17 @@ public class GoodsGenerator implements Serializable {
 		return "GoodsGenerator [id=" + id + ", userId=" + userId + ", name=" + name + ", price=" + price + ", describe="
 				+ describe + ", result=" + result + ", time=" + time + "]";
 	}
+
+	public GoodsGenerator(String name, Float price, String describe) {
+		super();
+		this.name = name;
+		this.price = price;
+		this.describe = describe;
+	}
+
+	public GoodsGenerator() {
+		super();
+	}
     
     
 }

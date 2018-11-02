@@ -33,12 +33,17 @@ public class ResourceController {
 
 	@Autowired
 	private static ResourceService resourceService;
+	
 	private static Set<String> set = new HashSet();
-	private static String realpath = "";
+	private static String realpath = "/root/apache-tomcat-7.0.82/webapps/img";
+	private static String url = "https://duoyi-1254133551.cos.ap-guangzhou.myqcloud.com/";
 
 	static {
 		set.add("jpg");
 		set.add("jar");
+		set.add("txt");
+		set.add("xlxs");
+		set.add("ppt");
 	}
 
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
@@ -60,12 +65,12 @@ public class ResourceController {
 	@RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject uploadFile(HttpServletRequest req, HttpServletResponse res,
-			@RequestParam(value = "file") MultipartFile file, @RequestParam(value = "describe") String describe,
+			@RequestParam(value = "file") MultipartFile file, 
+			@RequestParam(value = "describe") String describe,
 			@RequestParam(value = "price") Integer price) throws IllegalStateException, IOException {
 		JSONObject json = new JSONObject();
 		// MultipartHttpServletRequest Multireq = (MultipartHttpServletRequest)
 		// MultipartFile file = Multireq.getFile("file");
-		String url = "https://duoyi-1254133551.cos.ap-guangzhou.myqcloud.com/";
 		HttpSession session = req.getSession();
 		int userid = (int) session.getAttribute("userid");
 
@@ -77,7 +82,7 @@ public class ResourceController {
 				File target = new File(realpath, newName);
 				file.transferTo(target);
 				url += newName;
-				Map resultMap = COSUtil.Upload(COSUtil.getCOSClient(), target);
+				Map resultMap = COSUtil.Upload(COSUtil.getCOSClient(), target,url);
 				if ((int) resultMap.get("status") == 1) {
 
 					ResourceGenerator resourceGenerator = new ResourceGenerator(userid, (String) resultMap.get("url"),
@@ -85,8 +90,7 @@ public class ResourceController {
 
 					resourceService.add(resourceGenerator);
 					json.put("status", 1);
-					json.put("message", "上传成功");
-					json.put("url", resultMap.get("url"));
+					json.put("message", "添加成功");
 				} else {
 					json.put("status", -1);
 					json.put("message", "文件上传失败，请稍后重试");

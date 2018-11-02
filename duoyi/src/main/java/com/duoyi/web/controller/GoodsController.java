@@ -1,7 +1,11 @@
 package com.duoyi.web.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,9 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.duoyi.model.po.GoodsGenerator;
+import com.duoyi.model.po.PhotoGenerator;
+import com.duoyi.util.COSUtil;
+import com.duoyi.util.StringUtils;
 import com.duoyi.web.service.GoodsService;
+import com.duoyi.web.service.PhotoService;
 
 import net.sf.json.JSONObject;
 
@@ -23,8 +32,14 @@ import net.sf.json.JSONObject;
 @RequestMapping("/goods")
 public class GoodsController {
 	
+	private static String url = "https://duoyi-1254133551.cos.ap-guangzhou.myqcloud.com/";
+	private static String realpath = "/root/apache-tomcat-7.0.82/webapps/img/";
+//	private static String realpath = "D:/test";
+	
 	@Autowired
 	private GoodsService goodsService;
+	@Autowired
+	PhotoService photoService;
 
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	@ResponseBody
@@ -68,20 +83,81 @@ public class GoodsController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject add(@RequestBody GoodsGenerator goodsGenerator,HttpServletRequest request){
+	public JSONObject add(HttpServletRequest request,
+			@RequestParam(value = "img") MultipartFile[] imgs, 
+			@RequestParam(value = "name") String name,
+			@RequestParam(value = "price") float price,
+			@RequestParam(value = "describe") String describe){
 		JSONObject json = new JSONObject();
 		HttpSession session = request.getSession();
+		int goodid = 0;
+		int i = 0;
 		int userid = (int) session.getAttribute("userid");
 //		int userid = 1;
+		List<String> urlList = new ArrayList<String>();
+		
+		GoodsGenerator goodsGenerator = new GoodsGenerator(name,price,describe);
 		goodsGenerator.setUserId(userid);
 		goodsGenerator.setTime(new Date());
-		int result = goodsService.add(goodsGenerator);
-		if(result<=0){
-			json.put("status", -1);
-			json.put("message","添加失败");
-		}else {
-			json.put("status", 1);
-			json.put("message","添加成功");
+		
+		for(MultipartFile img : imgs) {
+			
+			if (img != null) {
+				String imgName = img.getOriginalFilename();
+				String ext = StringUtils.splitByPot(imgName);
+				if(ext.equals("jpg")||ext.equals("png")){
+					
+					String newName = StringUtils.getRandomString(20) + "." + ext;
+					File target = new File(realpath, newName);
+					try {
+						img.transferTo(target);
+					} catch (IllegalStateException | IOException e) {
+						e.printStackTrace();
+						json.put("status", -1);
+						json.put("message","图片转换错误");
+						return json;
+						
+					}
+					String newurl = url + newName;
+					urlList.add(newurl);
+					System.out.println("+++++++++++++++++++" + url);
+					Map resultMap = COSUtil.Upload(COSUtil.getCOSClient(), target,newName);
+					if ((int) resultMap.get("status") == 1) {
+						if(i==0){
+							int result = goodsService.add(goodsGenerator);
+							goodid = goodsGenerator.getId();
+//							System.out.println("新加入的id为" + goodsGenerator.getId());
+							if(result<=0){
+								json.put("status", -1);
+								json.put("message","添加失败");
+							}else {
+//								photoService.insert(new PhotoGenerator(goodsGenerator.getId(), newurl));
+								json.put("status", 1);
+								json.put("message","添加成功");
+							}
+							i++;
+						}
+						
+						
+					}else {
+						json.put("status", -1);
+						json.put("message","上传图片失败");
+						return json;
+					}
+				}else {
+					json.put("status", -1);
+					json.put("message","图片格式错误");
+					return json;
+				}
+			}else {
+				json.put("status", -1);
+				json.put("message","图片为空");
+				return json;
+			}
+		}
+		
+		for(String inurl : urlList){
+			photoService.insert(new PhotoGenerator(goodid, inurl));
 		}
 		return json;
 	}

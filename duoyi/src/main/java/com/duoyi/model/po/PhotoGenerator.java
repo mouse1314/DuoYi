@@ -3,7 +3,7 @@ package com.duoyi.model.po;
 import java.io.Serializable;
 
 public class PhotoGenerator implements Serializable {
-    private Integer id;
+	private Integer id;
 
     private Integer cardId;
 
@@ -44,4 +44,15 @@ public class PhotoGenerator implements Serializable {
     public void setImg(String img) {
         this.img = img == null ? null : img.trim();
     }
+    public PhotoGenerator(Integer goodId, String img) {
+		super();
+		this.goodId = goodId;
+		this.img = img;
+	}
+
+	public PhotoGenerator() {
+		super();
+	}
+
+    
 }

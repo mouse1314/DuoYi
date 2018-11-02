@@ -58,7 +58,7 @@ public class COSUtil {
 	 *  file：本地地址
 	 */
 	@SuppressWarnings({ "finally", "rawtypes" })
-	public static Map Upload(COSClient CosClient,File localFile) {
+	public static Map Upload(COSClient CosClient,File localFile,String key) {
 		Map resultMap = new HashMap();
 		ExecutorService threadPool = Executors.newFixedThreadPool(32);
 		// 传入一个 threadpool, 若不传入线程池, 默认 TransferManager 中会生成一个单线程的线程池。
@@ -67,18 +67,18 @@ public class COSUtil {
 		try {
 			
 //			File localFile = new File(file);
-			String key = StringUtils.getRandomString(30)+"."+ StringUtils.splitByPot(localFile.getName());
+//			String key = StringUtils.getRandomString(30)+"."+ StringUtils.splitByPot(localFile.getName());
 			PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key, localFile);
 			// 本地文件上传
 			Upload upload = transferManager.upload(putObjectRequest);
 			// 等待传输结束（如果想同步的等待上传结束，则调用 waitForCompletion）
 			UploadResult uploadResult = upload.waitForUploadResult();
-			String url = urlhead + key +"."+ StringUtils.splitByPot(localFile.getName());
+//			String url = urlhead + key +"."+ StringUtils.splitByPot(localFile.getName());
 //			String url = CosClient.generatePresignedUrl(bucketName + "-" + appId, key,
-//					new Date(new Date().getTime() + 5 * 60 * 10000)).toString();
+//				new Date(new Date().getTime() + 5 * 60 * 10000)).toString();
 			resultMap.put("status", 1);
-			resultMap.put("url",url);
-			System.out.println(url);
+//			resultMap.put("url",url);
+//			System.out.println(url);
 		} catch (CosServiceException e) {
 			// TODO Auto-generated catch block
 			resultMap.put("status", -1);

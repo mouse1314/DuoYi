@@ -101,7 +101,7 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.duoyi.model.po.GoodsGenerator">
+  <insert id="insert" parameterType="com.duoyi.model.po.GoodsGenerator" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into goods (id, user_id, `name`, 
       price, `describe`, result, 
       time)
@@ -109,7 +109,7 @@
       #{price,jdbcType=REAL}, #{describe,jdbcType=VARCHAR}, #{result,jdbcType=INTEGER}, 
       #{time,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.duoyi.model.po.GoodsGenerator">
+  <insert id="insertSelective" parameterType="com.duoyi.model.po.GoodsGenerator" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
     insert into goods
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -119,13 +119,13 @@
         user_id,
       </if>
       <if test="name != null">
-        name,
+        `name`,
       </if>
       <if test="price != null">
         price,
       </if>
       <if test="describe != null">
-        describe,
+        `describe`,
       </if>
       <if test="result != null">
         result,
