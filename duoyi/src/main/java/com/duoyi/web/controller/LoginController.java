@@ -26,6 +26,12 @@ public class LoginController {
     public JSONObject login(@RequestBody UserVo user,HttpServletRequest request){
 		
 		JSONObject json = new JSONObject();
+		
+		if(user.getUsername()==null||user.getPassword()==null){
+			json.put("state",-2);
+			json.put("message", "请输入账号密码");
+			return json;
+		}
 		int result = userSerivice.selectPassByUsername(user);
 		if(result==0){
 			json.put("state",0);
