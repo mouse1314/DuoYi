@@ -41,7 +41,7 @@ public class LoginController {
 			json.put("message", "密码错误");
 		}else if(result==1){
 			HttpSession session = request.getSession();
-			session.setAttribute("username",userSerivice.getUserId(user.getUsername()));
+			session.setAttribute("userid",userSerivice.getUserId(user.getUsername()));
 			json.put("state",1);
 			json.put("message", "正确");
 		}
