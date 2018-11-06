@@ -33,7 +33,7 @@ public class UserController {
 		UserVo2 user = userService.getUser(userid);
 		System.out.println(user);
 		json.put("status", 1);
-		json.put("result",JSONObject.fromObject(user));
+		json.put("result",user);
 		return json;
 	}
 	

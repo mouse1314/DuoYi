@@ -28,21 +28,21 @@ public class LoginController {
 		JSONObject json = new JSONObject();
 		
 		if(user.getUsername()==null||user.getPassword()==null){
-			json.put("state",-2);
+			json.put("status",-2);
 			json.put("message", "请输入账号密码");
 			return json;
 		}
 		int result = userSerivice.selectPassByUsername(user);
 		if(result==0){
-			json.put("state",0);
+			json.put("status",0);
 			json.put("message", "无账号");
 		}else if(result==-1){
-			json.put("state",-1);
+			json.put("status",-1);
 			json.put("message", "密码错误");
 		}else if(result==1){
 			HttpSession session = request.getSession();
 			session.setAttribute("userid",userSerivice.getUserId(user.getUsername()));
-			json.put("state",1);
+			json.put("status",1);
 			json.put("message", "正确");
 		}
 		return json;
