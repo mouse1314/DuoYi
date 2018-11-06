@@ -28,9 +28,17 @@ public class RegisterController {
 		JSONObject json = new JSONObject();
 		String  result = userSerivice.saveUser(user);
 		
-		
-			json.put("status", 1);
-			json.put("message", result);
+			if("注册成功".equals(result)){
+				json.put("status", 1);
+				json.put("message", result);
+			}else if ("注册失败".equals(result)) {
+				json.put("status", -1);
+				json.put("message", result);
+			}else{
+				json.put("status", 0);
+				json.put("message", result);
+			}
+			
 
 		return json;
 		

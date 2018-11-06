@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
 		
 		try {
 			//判断用户是否被注册
-			String username = userMapper.selectPassByUsername(user.getUsername());
-			if(username != null || username != ""){
+			UserGenerator user1 = userMapper.selectUserByUsername(user.getUsername());
+			if(user1 != null){
 				return "此账号已被注册";
 			}
 			

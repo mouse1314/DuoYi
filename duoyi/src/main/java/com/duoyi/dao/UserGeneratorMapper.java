@@ -34,4 +34,7 @@ public interface UserGeneratorMapper {
     int getUserId(@Param("username")String username);
     
     UserGenerator getUser(@Param("id")Integer id);
+    
+    //根据用户名选择用户
+    UserGenerator selectUserByUsername(@Param("username")String username);
 }
