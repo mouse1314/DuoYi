@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.duoyi.model.po.GoodsGenerator;
 import com.duoyi.model.po.PhotoGenerator;
@@ -85,7 +86,7 @@ public class GoodsController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
 	public JSONObject add(HttpServletRequest request,
-			@RequestParam(value = "img") MultipartFile[] imgs, 
+			@RequestParam(value = "img") CommonsMultipartFile[] imgs, 
 			@RequestParam(value = "name") String name,
 			@RequestParam(value = "price") float price,
 			@RequestParam(value = "describe") String describe){
@@ -96,7 +97,7 @@ public class GoodsController {
 		int userid = (int) session.getAttribute("userid");
 //		int userid = 1;
 		List<String> urlList = new ArrayList<String>();
-		
+		System.out.println("!!!!没进入吗！！！！");
 		GoodsGenerator goodsGenerator = new GoodsGenerator(name,price,describe);
 		goodsGenerator.setUserId(userid);
 		goodsGenerator.setTime(new Date());
