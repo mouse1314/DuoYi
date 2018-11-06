@@ -32,4 +32,6 @@ public interface UserGeneratorMapper {
     String selectPassByUsername(@Param("username")String username);
     
     int getUserId(@Param("username")String username);
+    
+    UserGenerator getUser(@Param("id")Integer id);
 }

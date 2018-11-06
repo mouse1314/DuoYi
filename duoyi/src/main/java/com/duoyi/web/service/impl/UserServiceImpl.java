@@ -16,6 +16,7 @@ import com.duoyi.util.DateTimeUtils;
 import com.duoyi.util.MD5Util;
 import com.duoyi.web.service.UserService;
 import com.duoyi.model.vo.UserVo;
+import com.duoyi.model.vo.UserVo2;
 
 
 /**
@@ -94,6 +95,13 @@ public class UserServiceImpl implements UserService {
 			return -1;
 		}
 		
+	}
+
+	@Override
+	public UserVo2 getUser(int userid) {
+		UserGenerator user = userMapper.getUser(userid);
+		
+		return new UserVo2(user);
 	}
 
 

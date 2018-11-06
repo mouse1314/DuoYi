@@ -278,4 +278,7 @@
   <select id="getUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
   	select id from user where username = #{username}
   </select>
+  <select id="getUser" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  	select * from user where id=#{id}
+  </select>
 </mapper>

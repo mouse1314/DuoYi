@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.duoyi.model.po.UserGenerator;
+import com.duoyi.model.vo.UserVo2;
 import com.duoyi.web.service.UserService;
 
 import net.sf.json.JSONObject;
@@ -21,6 +22,21 @@ public class UserController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@RequestMapping(value = "/get", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject get(HttpServletRequest request){
+		JSONObject json = new JSONObject();
+		HttpSession session = request.getSession();
+		int userid = (int) session.getAttribute("userid");
+//		int userid = 1;
+		UserVo2 user = userService.getUser(userid);
+		System.out.println(user);
+		json.put("status", 1);
+		json.put("result",JSONObject.fromObject(user));
+		return json;
+	}
+	
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	@ResponseBody
