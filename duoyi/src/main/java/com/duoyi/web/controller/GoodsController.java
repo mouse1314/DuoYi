@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,7 +44,7 @@ public class GoodsController {
 	PhotoService photoService;
 
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
-	@ResponseBody
+	@ResponseBody  //获取所有商品信息
 	public JSONObject getAll(){
 		JSONObject json = new JSONObject();
 		
@@ -188,7 +189,7 @@ public class GoodsController {
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
-	@ResponseBody
+	@ResponseBody   //删除商品信息
 	public JSONObject delete(@RequestParam int goodsid){
 		JSONObject json = new JSONObject();
 		int result = goodsService.delete(goodsid);
@@ -203,7 +204,7 @@ public class GoodsController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	@ResponseBody
+	@ResponseBody  //更新商品信息
 	public JSONObject update(@RequestBody GoodsGenerator goodsGenerator){
 		JSONObject json = new JSONObject();
 		
@@ -215,6 +216,29 @@ public class GoodsController {
 			json.put("status", 1);
 			json.put("message","编辑成功");
 		}
+		return json;
+	}
+	
+	@PostMapping("/searchs")
+	@ResponseBody
+	public JSONObject searchGoods(@RequestBody JSONObject search){
+		
+		JSONObject json = new JSONObject();
+		String msg = search.getString("search");
+		List<GoodsGenerator> list = goodsService.searchGoods(msg);
+		
+		if(list == null || "".equals(msg) || msg == null){
+			json.put("status", -1);
+			json.put("message", "查询失败");
+		}else if (list.size() == 0) {
+			json.put("status", 0);
+			json.put("message", "目前没有此类物品");
+		}else{
+			json.put("status", 1);
+			json.put("message", "查询成功");
+			json.put("result", list);
+		}
+		
 		return json;
 	}
 	

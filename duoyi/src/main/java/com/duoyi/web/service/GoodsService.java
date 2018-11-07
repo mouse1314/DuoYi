@@ -16,6 +16,10 @@ public interface GoodsService {
 	
 	public int update(GoodsGenerator goodsGenerator);
 	
+
 	public GoodsGenerator getOne(int id);
+
+	public List<GoodsGenerator> searchGoods(String msg);
+
 	
 }

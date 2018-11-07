@@ -50,9 +50,17 @@ public class GoodsServiceImpl implements GoodsService{
 	}
 
 
+
 	@Override
 	public GoodsGenerator getOne(int id) {
 		// TODO Auto-generated method stub
 		return goodsMapper.selectByPrimaryKey(id);
+	}
+	@Override //模糊搜索
+	public List<GoodsGenerator> searchGoods(String msg) {
+		
+		List<GoodsGenerator> list = goodsMapper.searchGoods(msg);
+		return list;
+
 	}
 }

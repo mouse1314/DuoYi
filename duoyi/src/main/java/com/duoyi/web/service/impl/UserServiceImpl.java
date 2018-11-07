@@ -38,17 +38,28 @@ public class UserServiceImpl implements UserService {
 		
 		try {
 			//判断用户是否被注册
-			String username = userMapper.selectPassByUsername(user.getUsername());
-			if(username != null || username != ""){
+			UserGenerator user1 = userMapper.selectUserByUsername(user.getUsername());
+			if(user1 != null){
 				return "此账号已被注册";
+			}
+			
+			if(user.getPassword() == null || "".equals(user.getPassword())){
+				return "密码为空";
 			}
 			
 			//对用户进行MD5加密
 			String password = md5.getMD5(user.getPassword(),user.getUsername());
-			if(password == null){
-				return "密码为空";
-			}
 			user.setPassword(password);
+			
+			//进行用户名的校验
+			String name = user.getName();
+			if(name == null || "".equals(name)){
+				return "姓名为空";
+			}
+			
+			if(name.contains("<") || name.contains(">")){
+				return "用户名带有非法字符<或者>";
+			}
 			
 			//设置用户当前注册时间
 			user.setRegisterTime(date);

@@ -31,5 +31,7 @@ public interface GoodsGeneratorMapper {
     List<GoodsGenerator> getAll();
     
     List<GoodsGenerator> getAllByUserid(int userid);
+ 
+    List<GoodsGenerator> searchGoods(@Param("name") String name);
 
 }
