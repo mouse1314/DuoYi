@@ -48,4 +48,11 @@ public class GoodsServiceImpl implements GoodsService{
 		// TODO Auto-generated method stub
 		return goodsMapper.updateByPrimaryKeySelective(goodsGenerator);
 	}
+
+
+	@Override
+	public GoodsGenerator getOne(int id) {
+		// TODO Auto-generated method stub
+		return goodsMapper.selectByPrimaryKey(id);
+	}
 }

@@ -71,6 +71,10 @@ public class GoodsController {
 		HttpSession session = request.getSession();
 		int userid = (int) session.getAttribute("userid");
 		List<GoodsGenerator> result = goodsService.getAllByUserid(userid);
+		
+		
+		
+		
 		if(result==null){
 			json.put("status", 1);
 			json.put("message","未能获取数据");
@@ -81,6 +85,26 @@ public class GoodsController {
 		}
 		return json;
 	}
+	
+	@RequestMapping(value = "/getOne", method = RequestMethod.GET)
+	@ResponseBody
+	public JSONObject getOne(@RequestParam int goodsid){
+		JSONObject json = new JSONObject();
+//		HttpSession session = request.getSession();
+//		int userid = (int) session.getAttribute("userid");
+		
+		GoodsGenerator result = goodsService.getOne(goodsid);
+		if(result==null){
+			json.put("status", 1);
+			json.put("message","未能获取数据");
+		}else {
+			json.put("status", 1);
+			json.put("message","成功获取数据");
+			json.put("result", result);
+		}
+		return json;
+	}
+	
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
