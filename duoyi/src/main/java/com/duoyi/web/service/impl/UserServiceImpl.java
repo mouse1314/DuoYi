@@ -43,12 +43,23 @@ public class UserServiceImpl implements UserService {
 				return "此账号已被注册";
 			}
 			
-			//对用户进行MD5加密
-			String password = md5.getMD5(user.getPassword(),user.getUsername());
-			if(password == null){
+			if(user.getPassword() == null || "".equals(user.getPassword())){
 				return "密码为空";
 			}
+			
+			//对用户进行MD5加密
+			String password = md5.getMD5(user.getPassword(),user.getUsername());
 			user.setPassword(password);
+			
+			//进行用户名的校验
+			String name = user.getName();
+			if(name == null || "".equals(name)){
+				return "姓名为空";
+			}
+			
+			if(name.contains("<") || name.contains(">")){
+				return "用户名带有非法字符<或者>";
+			}
 			
 			//设置用户当前注册时间
 			user.setRegisterTime(date);
