@@ -106,9 +106,11 @@ public class GoodsController {
 			json.put("status", 1);
 			json.put("message","未能获取数据");
 		}else {
+			List<String> img = photoService.getImgByGoodsId(result.getId());
+			GoodsVo vo = new GoodsVo(result,img);
 			json.put("status", 1);
 			json.put("message","成功获取数据");
-			json.put("result", result);
+			json.put("result", vo);
 		}
 		return json;
 	}
