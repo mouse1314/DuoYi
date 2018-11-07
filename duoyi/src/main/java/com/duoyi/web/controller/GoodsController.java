@@ -23,6 +23,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.duoyi.model.po.GoodsGenerator;
 import com.duoyi.model.po.PhotoGenerator;
+import com.duoyi.model.vo.GoodsVo;
 import com.duoyi.util.COSUtil;
 import com.duoyi.util.StringUtils;
 import com.duoyi.web.service.GoodsService;
@@ -47,19 +48,22 @@ public class GoodsController {
 	@ResponseBody  //获取所有商品信息
 	public JSONObject getAll(){
 		JSONObject json = new JSONObject();
-		
+		List<GoodsVo> realresult = new ArrayList<GoodsVo>();
 		List<GoodsGenerator> result = goodsService.getAll();
+		
 		if(result==null){
 			json.put("status", 1);
 			json.put("message","未能获取数据");
 		}else {
 			for(GoodsGenerator g : result){
-				System.out.println("++" + g.toString());
+				List<String> img = photoService.getImgByGoodsId(g.getId());
+				GoodsVo vo = new GoodsVo(g,img);
+				realresult.add(vo);
 			}
 //			JSONArray jsonarray = JSONArray.fromObject(result);  
 			json.put("status", 1);
 			json.put("message","成功获取数据");
-			json.put("result",result);
+			json.put("result",realresult);
 		}
 		
 		return json;
@@ -71,18 +75,21 @@ public class GoodsController {
 		JSONObject json = new JSONObject();
 		HttpSession session = request.getSession();
 		int userid = (int) session.getAttribute("userid");
+		List<GoodsVo> realresult = new ArrayList<GoodsVo>();
 		List<GoodsGenerator> result = goodsService.getAllByUserid(userid);
-		
-		
-		
 		
 		if(result==null){
 			json.put("status", 1);
 			json.put("message","未能获取数据");
 		}else {
+			for(GoodsGenerator g : result){
+				List<String> img = photoService.getImgByGoodsId(g.getId());
+				GoodsVo vo = new GoodsVo(g,img);
+				realresult.add(vo);
+			}
 			json.put("status", 1);
 			json.put("message","成功获取数据");
-			json.put("result", result);
+			json.put("result", realresult);
 		}
 		return json;
 	}

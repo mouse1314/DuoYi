@@ -4,7 +4,9 @@ import com.duoyi.model.po.CardGenerator;
 import com.duoyi.model.po.CardGeneratorCriteria;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface CardGeneratorMapper {
     long countByExample(CardGeneratorCriteria example);
 

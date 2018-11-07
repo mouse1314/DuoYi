@@ -27,4 +27,6 @@ public interface PhotoGeneratorMapper {
     int updateByPrimaryKeySelective(PhotoGenerator record);
 
     int updateByPrimaryKey(PhotoGenerator record);
+    
+    List<String> getImgByGoodsId(@Param("goodsid") int goodsid);
 }

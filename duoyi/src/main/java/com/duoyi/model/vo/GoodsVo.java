@@ -1,8 +1,14 @@
 package com.duoyi.model.vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
+
+import com.duoyi.model.po.GoodsGenerator;
 
 public class GoodsVo {
+	
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	 	private Integer id;
 
@@ -16,28 +22,22 @@ public class GoodsVo {
 
 	    private Integer result;
 
-	    private Date time;
+	    private String time;
+
+	    private List<String> img;
 	    
-	    private Integer cardId;
-
-	    private Integer goodId;
-
-	    private String img;
-
-		public GoodsVo(Integer id, Integer userId, String name, Float price, String describe, Integer result, Date time,
-				Integer cardId, Integer goodId, String img) {
-			super();
-			this.id = id;
-			this.userId = userId;
-			this.name = name;
-			this.price = price;
-			this.describe = describe;
-			this.result = result;
-			this.time = time;
-			this.cardId = cardId;
-			this.goodId = goodId;
+	    public GoodsVo(GoodsGenerator g,List<String> img){
+	    	this.id = g.getId();
+			this.userId = g.getUserId();
+			this.name = g.getName();
+			this.price = g.getPrice();
+			this.describe = g.getDescribe();
+			this.result = g.getResult();
+			this.time = formatter.format(g.getTime());
 			this.img = img;
-		}
+	    }
+
+		
 
 		public GoodsVo() {
 			super();
@@ -91,37 +91,23 @@ public class GoodsVo {
 			this.result = result;
 		}
 
-		public Date getTime() {
+		public String getTime() {
 			return time;
 		}
 
-		public void setTime(Date time) {
+		public void setTime(String time) {
 			this.time = time;
 		}
 
-		public Integer getCardId() {
-			return cardId;
-		}
-
-		public void setCardId(Integer cardId) {
-			this.cardId = cardId;
-		}
-
-		public Integer getGoodId() {
-			return goodId;
-		}
-
-		public void setGoodId(Integer goodId) {
-			this.goodId = goodId;
-		}
-
-		public String getImg() {
+		public List<String> getImg() {
 			return img;
 		}
 
-		public void setImg(String img) {
+		public void setImg(List<String> img) {
 			this.img = img;
 		}
+
+		
 	    
 	    
 	    
