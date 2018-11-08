@@ -78,14 +78,15 @@ public class ResourceController {
 			String fileName = file.getOriginalFilename();
 			String ext = StringUtils.splitByPot(fileName);
 			if (set.contains(ext)) {
-				String newName = StringUtils.getRandomString(10) + "." + ext;
+				String newName = StringUtils.getRandomString(30) + "." + ext;
 				File target = new File(realpath, newName);
 				file.transferTo(target);
-				url += newName;
-				Map resultMap = COSUtil.Upload(COSUtil.getCOSClient(), target,url);
+				String newurl = url + newName;
+//				url += newName;
+				Map resultMap = COSUtil.Upload(COSUtil.getCOSClient(), target,newName);
 				if ((int) resultMap.get("status") == 1) {
 
-					ResourceGenerator resourceGenerator = new ResourceGenerator(userid, (String) resultMap.get("url"),
+					ResourceGenerator resourceGenerator = new ResourceGenerator(userid, newurl,
 							describe, new Date(), price, 0);
 
 					resourceService.add(resourceGenerator);

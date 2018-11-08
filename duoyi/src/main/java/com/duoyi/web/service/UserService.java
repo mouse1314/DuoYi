@@ -22,5 +22,8 @@ public interface UserService {
 	public int updateUser(UserGenerator user);
 	
 	public UserVo2 getUser(int userid);
+	
+	public void updateImg(String img);
+
 
 }
