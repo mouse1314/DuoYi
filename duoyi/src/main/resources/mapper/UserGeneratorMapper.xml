@@ -285,4 +285,7 @@
   <select id="selectUserByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
   	select * from user where username = #{username}
   	</select>
+  	<select id="selectNameById" parameterType="java.lang.Integer" resultType="java.lang.String">
+  		select name from user where id=#{id}
+  	</select>
 </mapper>

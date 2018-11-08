@@ -15,6 +15,8 @@ public interface UserService {
 	
 	public int selectPassByUsername(UserVo user);
 	
+	public String selectNameById(int id);
+	
 	public int getUserId(String username);
 	
 	public int updateUser(UserGenerator user);

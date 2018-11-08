@@ -28,6 +28,7 @@ import com.duoyi.util.COSUtil;
 import com.duoyi.util.StringUtils;
 import com.duoyi.web.service.GoodsService;
 import com.duoyi.web.service.PhotoService;
+import com.duoyi.web.service.UserService;
 
 import net.sf.json.JSONObject;
 
@@ -42,7 +43,9 @@ public class GoodsController {
 	@Autowired
 	private GoodsService goodsService;
 	@Autowired
-	PhotoService photoService;
+	private PhotoService photoService;
+	@Autowired
+	private UserService userService;
 
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	@ResponseBody  //获取所有商品信息
@@ -58,6 +61,7 @@ public class GoodsController {
 			for(GoodsGenerator g : result){
 				List<String> img = photoService.getImgByGoodsId(g.getId());
 				GoodsVo vo = new GoodsVo(g,img);
+				vo.setUsername(userService.selectNameById(g.getUserId()));
 				realresult.add(vo);
 			}
 //			JSONArray jsonarray = JSONArray.fromObject(result);  

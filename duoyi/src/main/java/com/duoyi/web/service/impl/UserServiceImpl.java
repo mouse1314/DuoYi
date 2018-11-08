@@ -115,6 +115,12 @@ public class UserServiceImpl implements UserService {
 		return new UserVo2(user);
 	}
 
+	@Override
+	public String selectNameById(int id) {
+		// TODO Auto-generated method stub
+		return userMapper.selectNameById(id);
+	}
+
 
 	
 
