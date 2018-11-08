@@ -32,6 +32,7 @@ import net.sf.json.JSONObject;
 public class UserController {
 
 	private static String realpath = "/root/apache-tomcat-7.0.82/webapps/img";
+//	private static String realpath = "D:/test";
 	private static String url = "https://duoyi-1254133551.cos.ap-guangzhou.myqcloud.com/";
 
 	@Autowired
@@ -73,7 +74,8 @@ public class UserController {
 
 	@RequestMapping(value = "/img", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject upload(HttpServletRequest req, HttpServletResponse res, @RequestParam(value = "img") MultipartFile img)
+	public JSONObject upload(HttpServletRequest req, HttpServletResponse res, 
+			@RequestParam(value = "img") MultipartFile img)
 			throws IllegalStateException, IOException {
 		JSONObject json = new JSONObject();
 		HttpSession session = req.getSession();
@@ -90,7 +92,7 @@ public class UserController {
 				Map resultMap = COSUtil.Upload(COSUtil.getCOSClient(), target, newName);
 				if ((int) resultMap.get("status") == 1) {
 					
-					userService.updateImg(newurl);
+					userService.updateImg(newurl,userid);
 					json.put("status", 1);
 					json.put("message", "上传成功");
 				} else {
@@ -101,9 +103,6 @@ public class UserController {
 				json.put("status", -1);
 				json.put("message", "不允许图片类型");
 			}
-		} else {
-			json.put("status", -1);
-			json.put("message", "未选择上传的文件");
 		}
 		
 		return json;

@@ -23,7 +23,7 @@ public interface UserService {
 	
 	public UserVo2 getUser(int userid);
 	
-	public void updateImg(String img);
+	public void updateImg(String img,int userid);
 
 
 }

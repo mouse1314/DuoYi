@@ -122,9 +122,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void updateImg(String img) {
+	public void updateImg(String img,int userid) {
 		// TODO Auto-generated method stub
-		
+		userMapper.updateImg(img, userid);
 	}
 
 
