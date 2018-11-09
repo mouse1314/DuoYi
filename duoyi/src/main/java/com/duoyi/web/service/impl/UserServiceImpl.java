@@ -99,7 +99,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int updateUser(UserGenerator user) {
 		try {
-			user.setPassword(md5.getMD5(user.getPassword(), user.getUsername()));
+			user.setPassword(null);
+//			user.setPassword(md5.getMD5(user.getPassword(), user.getUsername()));
 			return userMapper.updateByPrimaryKeySelective(user);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

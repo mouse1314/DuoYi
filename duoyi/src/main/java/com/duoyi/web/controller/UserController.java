@@ -60,6 +60,7 @@ public class UserController {
 		int userid = (int) session.getAttribute("userid");
 		// int userid = 2 ;
 		user.setId(userid);
+		user.setUsername(null);
 		int result = userService.updateUser(user);
 		if (result <= 0) {
 			json.put("status", -1);

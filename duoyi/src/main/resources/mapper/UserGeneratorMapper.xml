@@ -106,11 +106,12 @@
   <insert id="insert" parameterType="com.duoyi.model.po.UserGenerator">
     insert into user (id, name, username, 
       password, sex, img, 
-      money, age, register_time
+      money, age, register_time,mail,phone
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
       #{money,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{registerTime,jdbcType=TIMESTAMP}
+      #{phone,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.duoyi.model.po.UserGenerator">
@@ -143,6 +144,12 @@
       <if test="registerTime != null">
         register_time,
       </if>
+      <if test="mail != null">
+      	mail,
+      </if>
+      <if test="phone != null">
+      	phone,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -171,6 +178,12 @@
       </if>
       <if test="registerTime != null">
         #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+       <if test="mail != null">
+      	#{mail,jdbcType=TIMESTAMP},
+      </if>
+      <if test="phone != null">
+      	#{phone,jdbcType=TIMESTAMP}
       </if>
     </trim>
   </insert>
@@ -256,6 +269,12 @@
       </if>
       <if test="registerTime != null">
         register_time = #{registerTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mail != null">
+      	mail = #{mail,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+      	phone = #{phone,jdbcType=VARCHAR}
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}

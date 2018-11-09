@@ -42,4 +42,8 @@ public class MD5Util {
         return encodeStr;
         }
 
+	public static void main(String[] args) throws Exception {
+		
+		System.out.println(getMD5("admin","admin"));
+	}
 }
