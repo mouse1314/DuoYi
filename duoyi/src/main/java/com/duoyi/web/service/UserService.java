@@ -25,5 +25,5 @@ public interface UserService {
 	
 	public void updateImg(String img,int userid);
 
-
+	public String getImg(int userid);
 }

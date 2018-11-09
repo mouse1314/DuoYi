@@ -62,6 +62,7 @@ public class GoodsController {
 				List<String> img = photoService.getImgByGoodsId(g.getId());
 				GoodsVo vo = new GoodsVo(g,img);
 				vo.setUsername(userService.selectNameById(g.getUserId()));
+				vo.setUserImg(userService.getImg(g.getUserId()));
 				realresult.add(vo);
 			}
 //			JSONArray jsonarray = JSONArray.fromObject(result);  

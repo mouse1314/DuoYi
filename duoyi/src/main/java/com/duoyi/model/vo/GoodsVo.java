@@ -28,6 +28,8 @@ public class GoodsVo {
 	    
 	    private String username;
 	    
+	    private String userImg;
+	    
 	    public GoodsVo(GoodsGenerator g,List<String> img){
 	    	this.id = g.getId();
 			this.userId = g.getUserId();
@@ -116,16 +118,22 @@ public class GoodsVo {
 					+ img + "]";
 		}
 
-
-
 		public String getUsername() {
 			return username;
 		}
 
-
-
 		public void setUsername(String username) {
 			this.username = username;
 		}
+
+		public String getUserImg() {
+			return userImg;
+		}
+
+		public void setUserImg(String userImg) {
+			this.userImg = userImg;
+		}
+		
+		
 
 }

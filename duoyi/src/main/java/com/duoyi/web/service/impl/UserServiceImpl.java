@@ -128,6 +128,14 @@ public class UserServiceImpl implements UserService {
 		userMapper.updateImg(img, userid);
 	}
 
+	@Override
+	public String getImg(int userid) {
+		// TODO Auto-generated method stub
+		return userMapper.getuserImg(userid);
+	}
+	
+	
+
 
 	
 

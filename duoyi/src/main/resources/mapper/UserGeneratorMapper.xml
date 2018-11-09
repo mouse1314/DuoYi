@@ -310,4 +310,7 @@
   	<update id="updateImg" >
   		update user set img = #{img} where id = #{id}
   	</update>
+  	<select id="getuserImg" parameterType="java.lang.Integer" resultType="java.lang.String">
+  		select img from user where id = #{id}
+  	</select>
 </mapper>
