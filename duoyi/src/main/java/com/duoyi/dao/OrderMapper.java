@@ -20,4 +20,5 @@ public interface OrderMapper {
 	public OrderVo selectOrderById(int id);
 	public List<OrderVo> selectOrders(int userid);
 	public List<OrderVo> selectOrderResult(int userid);
+	public int updateOrderForMoney(int id);
 }

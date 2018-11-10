@@ -41,4 +41,6 @@ public interface UserGeneratorMapper {
     String selectNameById(@Param("id") Integer id);
     
     void updateImg(@Param("img")String img,@Param("id")int id);
+    
+    int updateOrderForMoney(@Param("id") int id,@Param("price") int price);
 }

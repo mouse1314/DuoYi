@@ -59,4 +59,8 @@
 	= #{id} and o.result = 1
 	
 	</select>
+	
+	<update id="updateOrderForMoney" parameterType="int">
+	update `order` set result = 1 where id = #{id}
+	</update>
 </mapper>
