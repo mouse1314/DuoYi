@@ -1,6 +1,7 @@
 package com.duoyi.web.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -120,5 +121,24 @@ public class OrderController {
 		
 		
 		return json;
+	}
+	
+	@PostMapping("/pay")
+	@ResponseBody
+	public JSONObject payGoods(@RequestBody Map map,HttpServletRequest request){
+		
+		JSONObject json = new JSONObject();
+		int userid = (int)request.getSession().getAttribute("userid");
+		
+		map.put("userid", userid);
+		int status = orderService.payMoney(map);
+		json.put("status", status);
+		if(status == 1){
+			json.put("message", "支付成功");
+		}else{
+			json.put("message", "支付失败");
+		}
+		return json;
+		
 	}
 }

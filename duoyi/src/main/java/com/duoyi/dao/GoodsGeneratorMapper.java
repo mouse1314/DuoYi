@@ -33,5 +33,7 @@ public interface GoodsGeneratorMapper {
     List<GoodsGenerator> getAllByUserid(int userid);
  
     List<GoodsGenerator> searchGoods(@Param("name") String name);
+    
+    int  updateOrderForMoney(int id);
 
 }
