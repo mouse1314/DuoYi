@@ -10,10 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.alibaba.druid.sql.dialect.oracle.ast.stmt.OracleIfStatement.Else;
 import com.duoyi.model.po.Order;
 import com.duoyi.model.vo.OrderVo;
+import com.duoyi.web.service.GoodsService;
 import com.duoyi.web.service.OrderService;
 
 import net.sf.json.JSONObject;
@@ -29,6 +28,7 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 	
+	
 	@PostMapping("/insertOrder")
 	@ResponseBody
 	public JSONObject insertOrder(@RequestBody Order order,HttpServletRequest request){
@@ -43,6 +43,10 @@ public class OrderController {
 		json.put("status", status);
 		if(status == 1){
 			json.put("message", "下单成功");
+		}else if (status == 2) {
+			json.put("message", "该物品已被买走");
+		}else if(status == 0){
+			json.put("message", "该商品已被下架");
 		}else{
 			json.put("message", "下单失败");
 		}
