@@ -312,7 +312,11 @@
   		update user set img = #{img} where id = #{id}
   	</update>
   	
-  	<update id="updateOrderForMoney" parameterType="int">
+  	<update id="updateOrderForMoneyOut" parameterType="int">
   		update user set money = money - #{price}  where id = #{id}
+  	</update>
+  	
+  	<update id="updateOrderForMoneyIn" parameterType="int">
+  		update user set money = money + #{price}  where id = #{id}
   	</update>
 </mapper>

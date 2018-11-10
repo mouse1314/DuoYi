@@ -42,5 +42,8 @@ public interface UserGeneratorMapper {
     
     void updateImg(@Param("img")String img,@Param("id")int id);
     
-    int updateOrderForMoney(@Param("id") int id,@Param("price") int price);
+    int updateOrderForMoneyIn(@Param("id") int id,@Param("price") int price);
+    
+    int updateOrderForMoneyOut(@Param("id") int id,@Param("price") int price);
+    
 }

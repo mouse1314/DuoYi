@@ -105,20 +105,24 @@ public class OrderServiceImpl implements OrderService {
 		int goodid = (int) map.get("goodid");
 		int orderid = (int) map.get("orderid");
 		int price = (int) map.get("price");
-		int userid = (int)map.get("userid");
+		int userout = (int)map.get("userid");
 		
-		UserGenerator user = userMapper.getUser(userid);
+		UserGenerator user = userMapper.getUser(userout);
+		GoodsGenerator goods = goodMapper.selectByPrimaryKey(goodid);
+		int userin = goods.getUserId();
 		if(user.getMoney() < price){
 			return 0;
 		}
 		
-			userMapper.updateOrderForMoney(userid, price);
+		
+			userMapper.updateOrderForMoneyOut(userout, price);
+			userMapper.updateOrderForMoneyIn(userin, price);
 			orderMapper.updateOrderForMoney(orderid);
 			goodMapper.updateOrderForMoney(goodid);
 		
 			
-		
-		
+	
+			
 		return 1;
 	}
 
