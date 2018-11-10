@@ -14,10 +14,17 @@ public class Order {
 	private String way; // 支付方式
 	private String address; // 收获地址
 	private Date time;   //下单时间
+	private int result;
 	
 	
 	
 	
+	public int getResult() {
+		return result;
+	}
+	public void setResult(int result) {
+		this.result = result;
+	}
 	public Date getTime() {
 		return time;
 	}

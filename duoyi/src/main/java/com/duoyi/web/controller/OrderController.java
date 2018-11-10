@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.druid.sql.dialect.oracle.ast.stmt.OracleIfStatement.Else;
 import com.duoyi.model.po.Order;
 import com.duoyi.model.vo.OrderVo;
 import com.duoyi.web.service.OrderService;
@@ -72,7 +73,6 @@ public class OrderController {
 		
 		int userid = (int) request.getSession().getAttribute("userid");
 		List<OrderVo> list = orderService.selectOrders(userid);
-		//List<OrderVo> list = orderService.selectOrders(2);
 		JSONObject json = new JSONObject();
 		
 		if(list == null){
@@ -81,6 +81,32 @@ public class OrderController {
 		}else if (list.size() == 0) {
 			json.put("status", 0);
 			json.put("message", "该用户暂时没有订单");
+		}else{
+			//System.out.println(list.size());
+			json.put("status", 1);
+			json.put("message", "查询成功");
+			json.put("result", list);
+		}
+		
+		
+		return json;
+	}
+	
+	
+	@PostMapping("/mybuy")
+	@ResponseBody
+	public JSONObject mybuy(HttpServletRequest request){
+		
+		int userid = (int) request.getSession().getAttribute("userid");
+		List<OrderVo> list = orderService.selectOrderResult(userid);
+		JSONObject json = new JSONObject();
+		
+		if(list == null){
+			json.put("status", -1);
+			json.put("message", "查询失败,请重试");
+		}else if (list.size() == 0) {
+			json.put("status", 0);
+			json.put("message", "该用户还没有买下的东西");
 		}else{
 			//System.out.println(list.size());
 			json.put("status", 1);
