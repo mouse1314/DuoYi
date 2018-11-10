@@ -32,10 +32,11 @@ import net.sf.json.JSONObject;
 public class ResourceController {
 
 	@Autowired
-	private static ResourceService resourceService;
+	private ResourceService resourceService;
 	
 	private static Set<String> set = new HashSet();
-	private static String realpath = "/root/apache-tomcat-7.0.82/webapps/img";
+	private static String realpath = "D:/test";
+//	private static String realpath = "/root/apache-tomcat-7.0.82/webapps/img";
 	private static String url = "https://duoyi-1254133551.cos.ap-guangzhou.myqcloud.com/";
 
 	static {
@@ -67,7 +68,7 @@ public class ResourceController {
 	public JSONObject uploadFile(HttpServletRequest req, HttpServletResponse res,
 			@RequestParam(value = "file") MultipartFile file, 
 			@RequestParam(value = "describe") String describe,
-			@RequestParam(value = "price") Integer price) throws IllegalStateException, IOException {
+			@RequestParam(value = "price") String price) throws IllegalStateException, IOException {
 		JSONObject json = new JSONObject();
 		// MultipartHttpServletRequest Multireq = (MultipartHttpServletRequest)
 		// MultipartFile file = Multireq.getFile("file");
@@ -87,8 +88,8 @@ public class ResourceController {
 				if ((int) resultMap.get("status") == 1) {
 
 					ResourceGenerator resourceGenerator = new ResourceGenerator(userid, newurl,
-							describe, new Date(), price, 0);
-
+							describe, new Date(), Integer.parseInt(price), 0);
+					System.out.println(resourceGenerator.toString());
 					resourceService.add(resourceGenerator);
 					json.put("status", 1);
 					json.put("message", "添加成功");
@@ -109,15 +110,15 @@ public class ResourceController {
 		return json;
 	}
 
-	@RequestMapping(value = "/addResource", method = RequestMethod.POST)
-	@ResponseBody
-	public JSONObject addResource(@RequestBody ResourceGenerator resourceGenerator, HttpServletRequest req,
-			HttpServletResponse res) {
-		JSONObject json = new JSONObject();
-		HttpSession session = req.getSession();
-		int userid = (int) session.getAttribute("userid");
-
-		return json;
-	}
+//	@RequestMapping(value = "/addResource", method = RequestMethod.POST)
+//	@ResponseBody
+//	public JSONObject addResource(@RequestBody ResourceGenerator resourceGenerator, HttpServletRequest req,
+//			HttpServletResponse res) {
+//		JSONObject json = new JSONObject();
+//		HttpSession session = req.getSession();
+//		int userid = (int) session.getAttribute("userid");
+//
+//		return json;
+//	}
 
 }

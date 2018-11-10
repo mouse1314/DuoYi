@@ -103,7 +103,7 @@
   </delete>
   <insert id="insert" parameterType="com.duoyi.model.po.ResourceGenerator">
     insert into resource (id, user_id, url, 
-      describe, time, price, 
+      `describe`, `time`, price, 
       number)
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{url,jdbcType=VARCHAR}, 
       #{describe,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{price,jdbcType=INTEGER}, 
@@ -122,10 +122,10 @@
         url,
       </if>
       <if test="describe != null">
-        describe,
+        `describe`,
       </if>
       <if test="time != null">
-        time,
+        `time`,
       </if>
       <if test="price != null">
         price,

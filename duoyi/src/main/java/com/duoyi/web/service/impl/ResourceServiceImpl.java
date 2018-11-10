@@ -16,8 +16,6 @@ public class ResourceServiceImpl implements ResourceService {
 	@Autowired
 	private ResourceGeneratorMapper resourceMapper;
 	
-	
-	
 	@Override
 	public List<ResourceGenerator> getAll() {
 		// TODO Auto-generated method stub
