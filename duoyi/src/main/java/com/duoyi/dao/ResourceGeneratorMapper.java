@@ -27,4 +27,8 @@ public interface ResourceGeneratorMapper {
     int updateByPrimaryKeySelective(ResourceGenerator record);
 
     int updateByPrimaryKey(ResourceGenerator record);
+    
+    List<ResourceGenerator> getAll();
+    
+    List<ResourceGenerator> getAllByUserId(@Param("id") int id);
 }

@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -35,8 +36,8 @@ public class ResourceController {
 	private ResourceService resourceService;
 	
 	private static Set<String> set = new HashSet();
-	private static String realpath = "D:/test";
-//	private static String realpath = "/root/apache-tomcat-7.0.82/webapps/img";
+//	private static String realpath = "D:/test";
+	private static String realpath = "/root/apache-tomcat-7.0.82/webapps/img";
 	private static String url = "https://duoyi-1254133551.cos.ap-guangzhou.myqcloud.com/";
 
 	static {
@@ -51,15 +52,34 @@ public class ResourceController {
 	@ResponseBody
 	public JSONObject getAll() {
 		JSONObject json = new JSONObject();
-
+		List<ResourceGenerator> result = resourceService.getAll();
+		if(result==null){
+			json.put("status", -1);
+			json.put("message","未能获取数据");
+		}else {
+			json.put("status", 1);
+			json.put("message","成功获取数据");
+			json.put("result",result);
+		}
 		return json;
 	}
 
 	@RequestMapping(value = "/getAllByUserId", method = RequestMethod.GET)
 	@ResponseBody
-	public JSONObject getAllByUserId() {
+	public JSONObject getAllByUserId(HttpServletRequest req) {
 		JSONObject json = new JSONObject();
-
+		HttpSession session = req.getSession();
+		int userid = (int) session.getAttribute("userid");
+		
+		List<ResourceGenerator> result = resourceService.getAllByUserId(userid);
+		if(result==null){
+			json.put("status", -1);
+			json.put("message","未能获取数据");
+		}else {
+			json.put("status", 1);
+			json.put("message","成功获取数据");
+			json.put("result",result);
+		}
 		return json;
 	}
 

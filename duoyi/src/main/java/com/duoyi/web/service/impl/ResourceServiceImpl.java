@@ -19,13 +19,13 @@ public class ResourceServiceImpl implements ResourceService {
 	@Override
 	public List<ResourceGenerator> getAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return resourceMapper.getAll();
 	}
 
 	@Override
-	public List<ResourceGenerator> getAllByUserId() {
+	public List<ResourceGenerator> getAllByUserId(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		return resourceMapper.getAllByUserId(id);
 	}
 
 	@Override

@@ -8,7 +8,7 @@ public interface ResourceService {
 
 	public List<ResourceGenerator> getAll();
 	
-	public List<ResourceGenerator> getAllByUserId();
+	public List<ResourceGenerator> getAllByUserId(int id);
 	
 	public void add(ResourceGenerator record);
 	

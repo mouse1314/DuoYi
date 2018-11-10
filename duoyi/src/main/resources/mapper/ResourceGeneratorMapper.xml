@@ -240,4 +240,10 @@
       number = #{number,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="getAll" resultType="com.duoyi.model.po.ResourceGenerator">
+  	select * from resource
+  </select>
+  <select id="getAllByUserId" parameterType="java.lang.Integer" resultType="com.duoyi.model.po.ResourceGenerator">
+  	select * from resource where user_id = #{id}
+  </select>
 </mapper>
