@@ -8,9 +8,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.duoyi.dao.GoodsGeneratorMapper;
 import com.duoyi.dao.OrderMapper;
+import com.duoyi.model.po.GoodsGenerator;
 import com.duoyi.model.po.Order;
 import com.duoyi.model.vo.OrderVo;
+import com.duoyi.web.service.GoodsService;
 import com.duoyi.web.service.OrderService;
 
 /**
@@ -22,11 +25,19 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	private OrderMapper orderMapper;
+	@Autowired 
+	private GoodsGeneratorMapper goodMapper;
 	
 	@Override
 	public int insertOrder(Order order) {
 		
 		try{
+			GoodsGenerator good = goodMapper.selectByPrimaryKey(order.getGoodid());
+			if(good == null){
+				return 0;
+			}else if (good.getResult() == 1) {
+				return 2;
+			}
 			Date time = new Date();
 			order.setTime(time);
 			orderMapper.insertOrder(order);

@@ -11,6 +11,8 @@
     <result column="money" jdbcType="INTEGER" property="money" />
     <result column="age" jdbcType="INTEGER" property="age" />
     <result column="register_time" jdbcType="TIMESTAMP" property="registerTime" />
+    <result column="mail" property="mail"/>
+    <result column="phone" property="phone"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -104,15 +106,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.duoyi.model.po.UserGenerator">
-    insert into user (id, name, username, 
+    insert into `user`(name, username, 
       password, sex, img, 
       money, age, register_time,mail,phone
       )
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+    values (#{name,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
       #{money,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{registerTime,jdbcType=TIMESTAMP}
-      #{phone,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR}
-      )
+      #{mail},#{phone})
   </insert>
   <insert id="insertSelective" parameterType="com.duoyi.model.po.UserGenerator">
     insert into user
