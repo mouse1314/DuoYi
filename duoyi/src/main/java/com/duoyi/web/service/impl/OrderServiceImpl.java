@@ -70,4 +70,15 @@ public class OrderServiceImpl implements OrderService {
 		
 	}
 
+	@Override
+	public List<OrderVo> selectOrderResult(int userid) {
+		try{
+			List<OrderVo> list = orderMapper.selectOrderResult(userid);
+			return list;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }

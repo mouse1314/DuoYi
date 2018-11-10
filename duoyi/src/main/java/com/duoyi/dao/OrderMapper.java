@@ -19,4 +19,5 @@ public interface OrderMapper {
 	public int delectOrder(int id);
 	public OrderVo selectOrderById(int id);
 	public List<OrderVo> selectOrders(int userid);
+	public List<OrderVo> selectOrderResult(int userid);
 }
