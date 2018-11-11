@@ -63,6 +63,7 @@ public class UserServiceImpl implements UserService {
 			
 			//设置用户当前注册时间
 			user.setRegisterTime(date);
+			user.setSex("男");
 			userMapper.insert(user);
 		} catch (Exception e) {
 			return "注册失败";

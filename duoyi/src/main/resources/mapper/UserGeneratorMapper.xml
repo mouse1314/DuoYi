@@ -108,12 +108,11 @@
   <insert id="insert" parameterType="com.duoyi.model.po.UserGenerator">
     insert into `user`(name, username, 
       password, sex, img, 
-      money, age, register_time,mail,phone
+      money, age, register_time
       )
     values (#{name,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{img,jdbcType=VARCHAR}, 
-      #{money,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{registerTime,jdbcType=TIMESTAMP}
-      #{mail},#{phone})
+      #{money,jdbcType=INTEGER}, #{age,jdbcType=INTEGER}, #{registerTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.duoyi.model.po.UserGenerator">
     insert into user

@@ -48,6 +48,8 @@ public class OrderServiceImpl implements OrderService {
 			Date time = new Date();
 			order.setTime(time);
 			orderMapper.insertOrder(order);
+			System.out.println("*********************"+order.getId());
+//			goodMapper.updateGoodsForOrder(order.getGoodid());
 			return 1;
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -114,15 +116,11 @@ public class OrderServiceImpl implements OrderService {
 			return 0;
 		}
 		
-		
 			userMapper.updateOrderForMoneyOut(userout, price);
 			userMapper.updateOrderForMoneyIn(userin, price);
 			orderMapper.updateOrderForMoney(orderid);
 			goodMapper.updateOrderForMoney(goodid);
 		
-			
-	
-			
 		return 1;
 	}
 

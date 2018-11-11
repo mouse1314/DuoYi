@@ -164,6 +164,7 @@ public class GoodsController {
 					Map resultMap = COSUtil.Upload(COSUtil.getCOSClient(), target,newName);
 					if ((int) resultMap.get("status") == 1) {
 						if(i==0){
+							goodsGenerator.setResult(0);
 							int result = goodsService.add(goodsGenerator);
 							goodid = goodsGenerator.getId();
 //							System.out.println("新加入的id为" + goodsGenerator.getId());

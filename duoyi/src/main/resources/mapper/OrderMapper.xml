@@ -32,7 +32,8 @@
 		</association>
 	</resultMap>
 
-	<insert id="insertOrder" parameterType="com.duoyi.model.po.Order">
+	<insert id="insertOrder" parameterType="com.duoyi.model.po.Order" 
+		useGeneratedKeys="true" keyProperty="id" keyColumn="id">
 		insert into
 		`order`(user_id,good_id,way,address,time)
 		values(#{userid},#{goodid},#{way},#{address},#{time})
@@ -52,11 +53,11 @@
 	</select>
 	
 	<select id="selectOrderResult" parameterType="int" resultMap="BaseResultMap">
-	select o.id,o.user_id,o.good_id,o.way,o.address,o.time,g.id as
-	g_id,g.user_id as g_user_id, g.name as g_name,g.price as
-	g_price,g.describe as g_describe,g.result as g_result,g.time as g_time
-	from `order` o inner JOIN `goods` g on g.id = o.good_id where o.user_id
-	= #{id} and o.result = 1
+	select o.id,o.user_id,o.good_id,o.way,o.address,o.time,g.id as g_id,
+	g.user_id as g_user_id, g.name as g_name,g.price as g_price,
+	g.describe as g_describe,g.result as g_result,g.time as g_time
+	from `order` o inner JOIN `goods` g on g.id = o.good_id 
+	where o.user_id = #{id} and o.result = 1
 	
 	</select>
 	

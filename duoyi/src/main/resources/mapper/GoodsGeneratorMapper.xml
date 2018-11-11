@@ -252,7 +252,7 @@
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<select id="getAll" resultMap="BaseResultMap">
-		select * from goods
+		select * from goods where result = 0
 	</select>
 	<select id="getAllByUserid" resultMap="BaseResultMap">
 		select * from goods where user_id = #{userid}
@@ -270,5 +270,8 @@
 
 	<update id="updateOrderForMoney" parameterType="int">
 		update goods set result = 1 where id = #{id}
+	</update>
+	<update id="updateGoodsForOrder" parameterType="int">
+		update goods set result = 2 where id = #{id}
 	</update>
 </mapper>

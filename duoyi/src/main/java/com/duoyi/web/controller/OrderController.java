@@ -44,6 +44,7 @@ public class OrderController {
 		json.put("status", status);
 		if(status == 1){
 			json.put("message", "下单成功");
+			json.put("orderid",order.getId());
 		}else if (status == 2) {
 			json.put("message", "该物品已被买走");
 		}else if(status == 0){
@@ -136,7 +137,7 @@ public class OrderController {
 		if(status == 1){
 			json.put("message", "支付成功");
 		}else{
-			json.put("message", "支付失败");
+			json.put("message", "支付失败,请确认您的余额");
 		}
 		return json;
 		
